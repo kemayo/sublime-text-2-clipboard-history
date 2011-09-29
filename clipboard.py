@@ -24,7 +24,9 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
         new_regions = []
         for region in self.view.sel():
             self.view.replace(edit, region, text)
-            new_regions.append(sublime.Region(region.begin() + len(text), region.end() + len(text)))
+            new_region = sublime.Region(region.begin() + len(text),
+                region.end() + len(text))
+            new_regions.append(new_region)
         self.view.sel().clear()
         for region in new_regions:
             self.view.sel().add(region)
