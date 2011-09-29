@@ -16,7 +16,7 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
         self.view.window().show_quick_panel(clipboard_history, self.panel_done)
 
     def panel_done(self, picked):
-        if 0 > picked > len(clipboard_history):
+        if 0 > picked < len(clipboard_history):
             return
         print picked
         text = clipboard_history[picked]
