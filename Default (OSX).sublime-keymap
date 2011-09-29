@@ -1,0 +1,9 @@
+[
+	{ "keys": ["super+c"], "command": "clipboard_copy",
+		"context": [{"key": "clipboardcopy_fake", "operator":"equal", "operand":true}]
+	},
+	{ "keys": ["super+x"], "command": "clipboard_copy", "args": {"cut": true},
+		"context": [{"key": "clipboardcopy_fake", "operator":"equal", "operand":true}]
+	},
+	{ "keys": ["ctrl+alt+command+v"], "command": "clipboard_display" }
+]
