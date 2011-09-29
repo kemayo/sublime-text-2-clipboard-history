@@ -42,13 +42,14 @@ class ClipboardListner(sublime_plugin.EventListener):
     def on_query_context(self, view, key, *args):
         if key != "clipboardcopy_fake":
             return None
-        selected = view.sel()[0]
-        if selected.empty():
-            selected = view.line(selected)
+        for selected in view.sel():
+            selected = view.sel()[0]
+            if selected.empty():
+                selected = view.line(selected)
 
-        text = view.substr(selected)
+            text = view.substr(selected)
 
-        if not clipboard_history or clipboard_history[-1] != text:
-            clipboard_history.insert(0, text)
+            if not clipboard_history or clipboard_history[-1] != text:
+                clipboard_history.insert(0, text)
 
         return None
