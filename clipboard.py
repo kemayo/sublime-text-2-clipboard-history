@@ -3,6 +3,7 @@
 import sublime
 import sublime_plugin
 
+# TODO: limit the size of this?
 clipboard_history = []
 
 
@@ -29,6 +30,7 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
             self.view.sel().add(region)
         self.view.end_edit(edit)
 
+        # TODO: option for this? (it's how textmate did it, but...)
         sublime.set_clipboard(text)
 
 
