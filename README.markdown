@@ -4,7 +4,9 @@ Keep a history of your clipboard items. Let you paste them back in, as needed.
 
 ## Using
 
-Press ctrl-alt-super-v to show the history.
+OSX: Press ctrl-alt-super-v to show the history.
+
+Windows:  Press ctrl-alt-v to show the history.
 
 ## Limitations
 
