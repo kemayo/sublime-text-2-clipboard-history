@@ -4,22 +4,23 @@ import sublime
 import sublime_plugin
 
 # TODO: limit the size of this?
-clipboard_history = []
+history = []
 
 
 class ClipboardDisplayCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        print clipboard_history
-        if not clipboard_history:
-            print "no history"
+        print history
+        if not history:
             return
-        self.view.window().show_quick_panel(clipboard_history, self.panel_done)
+        self.view.window().show_quick_panel(history, self.panel_done)
 
     def panel_done(self, picked):
-        if 0 > picked < len(clipboard_history):
+        if 0 > picked < len(history):
             return
-        print picked
-        text = clipboard_history[picked]
+
+        s = sublime.load_settings("ClipboardHistory.sublime-settings")
+
+        text = history[picked]
         edit = self.view.begin_edit()
         new_regions = []
         for region in self.view.sel():
@@ -32,8 +33,8 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
             self.view.sel().add(region)
         self.view.end_edit(edit)
 
-        # TODO: option for this? (it's how textmate did it, but...)
-        sublime.set_clipboard(text)
+        if s.get("add_on_paste"):
+            sublime.set_clipboard(text)
 
 
 # Here we see a cunning plan. We listen for a key, but never say we
@@ -51,7 +52,12 @@ class ClipboardListner(sublime_plugin.EventListener):
 
             text = view.substr(selected)
 
-            if not clipboard_history or clipboard_history[-1] != text:
-                clipboard_history.insert(0, text)
+            if not history or history[-1] != text:
+                history.insert(0, text)
+
+        s = sublime.load_settings("ClipboardHistory.sublime-settings")
+        if s.get("limit") < len(history):
+            for i in xrange(len(history) - s.get("limit")):
+                history.pop()
 
         return None
