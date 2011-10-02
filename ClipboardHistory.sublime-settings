@@ -1,4 +1,4 @@
 {
 	"limit": 30
-	,"add_on_paste": true
+	,"paste_and_indent": true
 }

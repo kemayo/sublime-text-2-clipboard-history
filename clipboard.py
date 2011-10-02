@@ -3,16 +3,18 @@
 import sublime
 import sublime_plugin
 
-# TODO: limit the size of this?
 history = []
 
 
 class ClipboardDisplayCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        print history
         if not history:
             return
-        self.view.window().show_quick_panel(history, self.panel_done)
+        # sublime has been known to choke and die on really big clipboard
+        # items getting displayed in the quick panel. Also, the truncation
+        # it uses for stuff that long is basically unreadable. Ergo...
+        summary = [item.strip()[:100] for item in history]
+        self.view.window().show_quick_panel(summary, self.panel_done)
 
     def panel_done(self, picked):
         if 0 > picked < len(history):
@@ -20,21 +22,11 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
 
         s = sublime.load_settings("ClipboardHistory.sublime-settings")
 
-        text = history[picked]
-        edit = self.view.begin_edit()
-        new_regions = []
-        for region in self.view.sel():
-            self.view.replace(edit, region, text)
-            new_region = sublime.Region(region.begin() + len(text),
-                region.end() + len(text))
-            new_regions.append(new_region)
-        self.view.sel().clear()
-        for region in new_regions:
-            self.view.sel().add(region)
-        self.view.end_edit(edit)
-
-        if s.get("add_on_paste"):
-            sublime.set_clipboard(text)
+        sublime.set_clipboard(history[picked])
+        if s.get('paste_and_indent'):
+            self.view.run_command('paste_and_indent')
+        else:
+            self.view.run_command('paste')
 
 
 # Here we see a cunning plan. We listen for a key, but never say we
