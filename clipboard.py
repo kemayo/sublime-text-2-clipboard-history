@@ -44,7 +44,7 @@ class ClipboardListner(sublime_plugin.EventListener):
 
             text = view.substr(selected)
 
-            if not history or history[-1] != text:
+            if not history or history[0] != text:
                 history.insert(0, text)
 
         s = sublime.load_settings("ClipboardHistory.sublime-settings")
