@@ -4,16 +4,24 @@ Keep a history of your clipboard items. Let you paste them back in, as needed.
 
 ## Using
 
-OSX: Press ctrl-alt-super-v to show the history.
+### OSX
 
-Windows:  Press ctrl-alt-v to show the history.
+ * Press ⌘⎇⌃V to show the history.
+ * Press ⌘⇧V to paste the previous (older) history entry.
+ * Press ⌘⇧⎇V to paste the next (newer) history entry.
+
+### Windows & Linux:
+
+ * Press ctrl-alt-v to show the history.
+ * Press ctrl-shift-v to paste the previous (older) history entry.
+ * Press ctrl-shift-alt-v to paste the next (newer) history entry.
 
 ## Limitations
 
 The history will only contain items that were copied:
 
  * in Sublime Text
- * using ctrl-c or ctrl-x (*not* the menu items)
+ * using ctrl-c/⌘C or ctrl-x/⌘X (*not* the menu items)
 
 Anything that reloads the plugin will clear the saved history.
 

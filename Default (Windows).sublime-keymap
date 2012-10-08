@@ -5,5 +5,7 @@
 	{ "keys": ["ctrl+x"], "command": "clipboard_copy",
 		"context": [{"key": "clipboardcopy_fake", "operator":"equal", "operand":true}]
 	},
-	{ "keys": ["ctrl+alt+v"], "command": "clipboard_display" }
+	{ "keys": ["ctrl+alt+v"], "command": "clipboard_display" },
+	{ "keys": ["ctrl+shift+v"], "command": "clipboard_paste_previous" },
+	{ "keys": ["ctrl+shift+alt+v"], "command": "clipboard_paste_next" }
 ]
