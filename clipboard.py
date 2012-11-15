@@ -32,6 +32,11 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
         else:
             self.view.run_command('paste')
 
+class ClipboardClearHistoryCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        for i in xrange(len(history) - 1):
+            history.pop()
+
 class ClipboardPastePreviousCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         global history_index
