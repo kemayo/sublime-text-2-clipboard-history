@@ -26,6 +26,13 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
 
         s = sublime.load_settings("ClipboardHistory.sublime-settings")
 
+        # swap picked paste to the top
+        if picked == 0:
+            text = history[0]
+        else:
+            text = history.pop(picked)
+            history.insert(0, text)
+
         sublime.set_clipboard(history[picked])
         if s.get('paste_and_indent'):
             self.view.run_command('paste_and_indent')
