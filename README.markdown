@@ -7,12 +7,14 @@ Keep a history of your clipboard items. Let you paste them back in, as needed.
 ### OSX
 
  * Press ⌘⎇⌃V to show the history.
+ * Press ⌘⎇⌃D to clear the history.
  * Press ⌘⇧V to paste the previous (older) history entry.
  * Press ⌘⇧⎇V to paste the next (newer) history entry.
 
 ### Windows & Linux:
 
  * Press ctrl-alt-v to show the history.
+ * Press ctrl-alt-d to clear the history.
  * Press ctrl-shift-v to paste the previous (older) history entry.
  * Press ctrl-shift-alt-v to paste the next (newer) history entry.
 
