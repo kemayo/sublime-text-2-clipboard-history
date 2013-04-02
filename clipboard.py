@@ -33,7 +33,7 @@ class ClipboardDisplayCommand(sublime_plugin.TextCommand):
             text = history.pop(picked)
             history.insert(0, text)
 
-        sublime.set_clipboard(history[picked])
+        sublime.set_clipboard(text)
         if s.get('paste_and_indent'):
             self.view.run_command('paste_and_indent')
         else:
